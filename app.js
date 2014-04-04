@@ -12,18 +12,16 @@ app.use(express.urlencoded());
 app.use(express.methodOverride())
 app.use(app.router);
 
-// Load controllers
-var self = this; 
-fs.readdir('./app/controllers/', function(err, files) { 
-  files.forEach(function(file) { 
-    var pkgName = path.basename(file, path.extname(file));
-    self[pkgName] = require(path.join('./app/controllers/', pkgName));
-  });
+// Load controller modules
+var controllers = {};
+var files = fs.readdirSync('./app/controllers/');
+files.forEach(function(file) {
+  var pkgName = path.basename(file, path.extname(file));
+  controllers[pkgName] = require('.' + path.sep + path.join('app', 'controllers', pkgName));
 });
 
 // Build our routes
-routes.build(app);
+routes.build(app, controllers);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+// Start the server
+app.listen(process.env.PORT || 3000);

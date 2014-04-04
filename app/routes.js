@@ -1,9 +1,7 @@
-exports.build = function(app) {
+exports.build = function(app, con) {
 
   // All routing should go here.
 
-  app.get('/', function(req, res) {
-    res.send('Boo');
-  });
+  app.get('/', con.home.index);
 
 }

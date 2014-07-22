@@ -1,8 +1,13 @@
 {
   "name": "NodeMVC",
+  "author": "Mike Merritt <emmjemm@gmail.com>",
   "version": "0.1.0",
-  "private": true,
+  "description": "Basic MVC framework.",
+  "main": "server.js",
   "dependencies": {
-    "express": "~3.5.1"
+    "express": "~4.6.0",
+    "morgan": "~1.2.0",
+    "body-parser": "~1.5.0",
+    "method-override": "~2.1.0"
   }
 }
